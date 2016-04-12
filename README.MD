@@ -1,5 +1,5 @@
 # Weather App
-Weathe app built in Jquery to show the local weather using the Openweather JSON API.
+Weathe app built in Jquery to show the local weather using the Openweather JSON API. See project [here](http://alidaca.github.io/Local-Weather-App/)
 
 ## Functionality
 - User can see the weather in current location.
