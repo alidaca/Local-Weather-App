@@ -3,7 +3,7 @@
 	var	weatherData;
 
 $(document).ready(function() {
-	
+
 // Detect location
 	if(navigator.geolocation){
 		navigator.geolocation.getCurrentPosition(locationSuccess,locationFail);
@@ -21,7 +21,7 @@ $(document).ready(function() {
 
 		var lat = position.coords.latitude;
 		var lon = position.coords.longitude;
-		var weatherAPI='http://api.openweathermap.org/data/2.5/forecast/daily?lat='+ lat +'&lon='+ lon +'&cnt=6&units=imperial';
+		var weatherAPI='http://api.openweathermap.org/data/2.5/forecast/daily?lat='+ lat +'&lon='+ lon +'&cnt=6&units=imperial' + '&APPID=be761b44747b2ed24a91d494de31c45c';
 
 		console.log(weatherAPI);
 
@@ -46,14 +46,14 @@ $(document).ready(function() {
 		  	var date = moment(today * 1000).format('MMMM DD, YYYY');
 
 		  	var todayConditions = '<i class="owf owf-' + icon + ' owf-5x owf-pull-left"></i>' +
-								  '<h3>' + city + '</h3>' + 
+								  '<h3>' + city + '</h3>' +
 								  '<p>' + date + '</p>';
-		  	
+
 		  	$('#today').append(todayConditions);
 		  	$('#temp').text(tempToday + '°');
 
 //add 5-day forecast data to mustache template
-						
+
 			data.formatDate = function(){
 				return moment(this.dt*1000).format('ddd, MMM DD');
 			};
@@ -81,9 +81,9 @@ $(document).ready(function() {
 			$('#far').click(function(){
 				changeTemp('far');
 			});
-		  	
+
 		  }); //parse JSON done
-		
+
 	} //location success
 
 }); // document ready
@@ -94,7 +94,7 @@ var originalTemp = Math.round(weatherData.list[0].temp.day);
 		//converts the main temperature
 		tempToday = Math.round((originalTemp - 32)/1.8);
 		$('#temp').html(tempToday + '°');
-		
+
 		// reload template with converted temperature values
 		reloadTemplate();
 		tempUnit = 'c';
@@ -130,7 +130,4 @@ function reloadTemplate(){
 	var tlContent = $('#forecastTemplate').html();
 	var rendForecast = Mustache.render(tlContent,weatherData);
 	$('#forecast').html(rendForecast);
-}		
-
-	
-
+}
