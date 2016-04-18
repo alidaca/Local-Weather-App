@@ -19,10 +19,14 @@ $(document).ready(function() {
 
 	function locationSuccess(position){
 
+		//for the weather info
 		var lat = position.coords.latitude;
 		var lon = position.coords.longitude;
 		var weatherAPI='http://api.openweathermap.org/data/2.5/forecast/daily?lat='+ lat +'&lon='+ lon +'&cnt=6&units=imperial' + '&APPID=be761b44747b2ed24a91d494de31c45c';
-
+		//for the bg image
+		var maxLat = lat + 0.089982311915998;
+		var maxLon = lon + 0.089982311915998
+		var imgAPI = 'http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=20&minx='+ lon +'&miny='+ lat +'&maxx='+ maxLon + '&maxy='+ maxLat +'&size=original&callback=?'
 		console.log(weatherAPI);
 
 //parse JSON
@@ -37,7 +41,7 @@ $(document).ready(function() {
 		  	weatherData = data;
 
 
-//add current conditions
+				//add current conditions
 
 		  	var today = data.list[0].dt;
 		  	tempToday = Math.round(data.list[0].temp.day);
@@ -52,7 +56,7 @@ $(document).ready(function() {
 		  	$('#today').append(todayConditions);
 		  	$('#temp').text(tempToday + '°');
 
-//add 5-day forecast data to mustache template
+				//add 5-day forecast data to mustache template
 
 			data.formatDate = function(){
 				return moment(this.dt*1000).format('ddd, MMM DD');
@@ -72,7 +76,7 @@ $(document).ready(function() {
 			var rendForecast = Mustache.render(tlContent,data);
 			$('#forecast').html(rendForecast);
 
-//Buttons
+			//Buttons
 
 			$('#cel').click(function(){
 				changeTemp('cel');
@@ -83,6 +87,21 @@ $(document).ready(function() {
 			});
 
 		  }); //parse JSON done
+
+			//get bg image
+			$.getJSON(imgAPI)
+				.fail(function(){
+					console.log('failed loading images');
+					$(document.body).attr('style','background-image: url("/assets/img/daytime.jpeg")');
+				})
+				.done(function(data){
+					var imgagesArr = data.photos;
+					console.log(imgagesArr);
+					var i = Math.floor(Math.random() * 21);
+					var bgImage = data.photos[i].photo_file_url;
+					console.log(bgImage);
+					$(document.body).attr('style','background-image: url("'+ bgImage +'")');
+				})
 
 	} //location success
 
