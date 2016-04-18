@@ -99,8 +99,10 @@ $(document).ready(function() {
 					console.log(imgagesArr);
 					var i = Math.floor(Math.random() * 21);
 					var bgImage = data.photos[i].photo_file_url;
+					var photoUrl = data.photos[i].photo_url;
 					console.log(bgImage);
 					$(document.body).attr('style','background-image: url("'+ bgImage +'")');
+					$('#photoCredit').attr('href', photoUrl);
 				})
 
 	} //location success

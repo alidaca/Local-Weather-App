@@ -33,10 +33,14 @@
 				<div class="col-md-2"></div> <!-- spacing -->
 			</div> <!--  today's temperature -->
 
-		
+
 			<div id="forecast"></div> <!-- 5-day forecast -->
-							
+
 		</div> <!-- weather container -->
+
+		<div class="footer">
+			<p>Photo provided by <a id="photoCredit" href="panoramio.com">Panoramio.com</a></p>
+		</div>
 
 	<!-- <div id="search" class="container box-search">Search for location</div> -->
 
@@ -49,7 +53,7 @@
 	<script type="text/template" id="forecastTemplate">
 	{{#list}}
 		<div class="row forecastRow">
-		<div class="col-md-6">{{formatDate}}</div> 
+		<div class="col-md-6">{{formatDate}}</div>
 		<div class="col-md-3 tempForecast">{{formatTemp}}</div>
 		<div class="col-md-3"><i class="{{{iconClass}}}"></i></div>
 		</div>
