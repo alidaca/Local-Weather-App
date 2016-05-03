@@ -5,6 +5,7 @@ Weathe app built in Jquery to show the local weather using the Openweather JSON 
 - User can see the weather in current location.
 - User can see the 5-day forecast in current location.
 - User can push a button to toggle between Fahrenheit and Celsius.
+- Background image changes based on user location
 
 ##Credits
 - Icon by [Owfont](http://websygen.github.io/owfont/)
